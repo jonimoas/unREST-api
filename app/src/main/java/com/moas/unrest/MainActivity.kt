@@ -28,6 +28,12 @@ class MainActivity : AppCompatActivity() {
                     val depthText = (findViewById<View>(R.id.editText2)) as EditText
                     val depth = depthText.text.toString().toInt()
                     val resultText = (findViewById<View>(R.id.editText3)) as EditText
+                    get("/"){
+                        runOnUiThread {
+                            resultText.setText(resultText.text.toString()+"\nGET "+ call.request.uri)
+                        }
+                        call.respondText("OK")
+                    }
                     for (i in 0..depth){
                         get(url) {
                             runOnUiThread {
